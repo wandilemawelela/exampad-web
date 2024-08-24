@@ -1,0 +1,19 @@
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+/usr/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-uhnbdm sitelibdir\=./.gem.20240824-4815-uhnbdm clean
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-uhnbdm sitelibdir\=./.gem.20240824-4815-uhnbdm
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-uhnbdm sitelibdir\=./.gem.20240824-4815-uhnbdm install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20240824-4815-uhnbdm/debug
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-uhnbdm sitelibdir\=./.gem.20240824-4815-uhnbdm clean

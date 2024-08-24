@@ -1,0 +1,24 @@
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/date-3.3.4/ext/date
+/usr/bin/ruby extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-euno0i sitelibdir\=./.gem.20240824-4815-euno0i clean
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-euno0i sitelibdir\=./.gem.20240824-4815-euno0i
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-euno0i sitelibdir\=./.gem.20240824-4815-euno0i install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20240824-4815-euno0i
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-euno0i sitelibdir\=./.gem.20240824-4815-euno0i clean

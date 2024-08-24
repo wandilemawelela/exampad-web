@@ -1,0 +1,18 @@
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+/usr/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-ipdgtx sitelibdir\=./.gem.20240824-4815-ipdgtx clean
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-ipdgtx sitelibdir\=./.gem.20240824-4815-ipdgtx
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-ipdgtx sitelibdir\=./.gem.20240824-4815-ipdgtx install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20240824-4815-ipdgtx
+
+current directory: /home/wandile/Documents/exampad/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240824-4815-ipdgtx sitelibdir\=./.gem.20240824-4815-ipdgtx clean
