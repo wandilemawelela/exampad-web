@@ -1,2 +1,38 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exampad</title>
+  <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-6">
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-blue-600">Welcome to Exampad</h1>
+      <p class="mt-2 text-lg text-gray-700">Learn, Play, Succeed with personalized quizzes and gamified learning!</p>
+    </header>
+    
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-blue-500">Create Your Quiz</h2>
+        <p class="mt-2 text-gray-600">Define your grade and subject to get started with customized quizzes designed for you.</p>
+        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Get Started</a>
+      </div>
+      
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-blue-500">Track Your Progress</h2>
+        <p class="mt-2 text-gray-600">Monitor your quiz performance and track your progress over time with our intuitive dashboard.</p>
+        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View Progress</a>
+      </div>
+      
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-blue-500">Leaderboard</h2>
+        <p class="mt-2 text-gray-600">Compete with others and climb the ranks on our leaderboard. See how you stack up!</p>
+        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Check Leaderboard</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+
