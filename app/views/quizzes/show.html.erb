@@ -1,0 +1,6 @@
+<h1 class="text-2xl font-bold mb-4"><%= @quiz.title %></h1>
+<p><%= @quiz.description %></p>
+
+<%= link_to 'Edit', edit_quiz_path(@quiz), class: 'bg-blue-500 text-white px-4 py-2 rounded' %>
+<%= link_to 'Back', quizzes_path, class: 'bg-gray-500 text-white px-4 py-2 rounded' %>
+
