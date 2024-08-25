@@ -1,4 +1,5 @@
 class QuizzesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_quiz, only: %i[show edit update destroy]
 
   def index
@@ -46,5 +47,12 @@ class QuizzesController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(:title, :description)
   end
+
+  def authorize_teacher
+    unless current_user.role == 'teacher'
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
+  end
+  
 end
 

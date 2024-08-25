@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exampad</title>
-  <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Exampad - Learn, Play, Succeed with personalized quizzes and gamified learning!</title>
+  <%= stylesheet_link_tag 'application.tailwind', media: 'all' %>
+  <%= csrf_meta_tags %>
 </head>
+
 <body class="bg-gray-100">
-  <header class="bg-blue-600 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Exampad</h1>
-      <nav class="space-x-4">
-        <%= link_to 'Login', new_user_session_path, class: 'px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded' %>
-        <%= link_to 'Signup', new_user_registration_path, class: 'px-4 py-2 bg-green-500 hover:bg-green-600 rounded' %>
-      </nav>
-    </div>
-  </header>
+  <div class="container mx-auto p-6">
+    <header class="flex justify-between items-center mb-8">
+      <h1 class="text-4xl font-bold text-blue-600">Exampad</h1>
 
-  <main class="container mx-auto p-6">
+      <div class="flex items-center">
+        <% if user_signed_in? %>
+          <span class="mr-4 text-gray-700">
+            Logged in as: <strong><%= current_user.role.capitalize %></strong>
+          </span>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" %>
+        <% else %>
+          <%= link_to 'Sign In', new_user_session_path, class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+        <% end %>
+      </div>
+    </header>
+
     <%= yield %>
-  </main>
+  </div>
 
-  <footer class="bg-gray-800 text-white text-center p-4 mt-6">
-    <p>&copy; 2024 Exampad. All rights reserved.</p>
-  </footer>
+<footer class="bg-gray-800 text-white text-center p-4 mt-6">
+  <p>&copy; 2024 Exampad. All rights reserved.</p>
+</footer>
 </body>
 </html>
-
