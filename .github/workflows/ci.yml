@@ -1,36 +1,48 @@
-name: CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
-
+    
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.4'
-
+    
     - name: Install dependencies
       run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-
-    - name: Set up database
-      run: |
+        sudo apt-get update
         sudo apt-get install -y postgresql-client
+        gem install bundler
+        bundle install
+    
+    - name: Set up database config
+      run: |
         cp config/database.yml.example config/database.yml
-        bundle exec rails db:create db:migrate RAILS_ENV=test
+    
+    - name: Create database
+      env:
+        RAILS_ENV: test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      run: |
+        bin/rails db:create db:schema:load
 
     - name: Run tests
-      run: |
-        bundle exec rspec
+      run: bin/rails test
+
