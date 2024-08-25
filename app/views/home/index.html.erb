@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exampad</title>
   <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 <body class="bg-gray-100">
   <div class="container mx-auto p-6">
     <header class="text-center mb-8">
@@ -17,22 +17,20 @@
       <div class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-blue-500">Create Your Quiz</h2>
         <p class="mt-2 text-gray-600">Define your grade and subject to get started with customized quizzes designed for you.</p>
-        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Get Started</a>
+        <%= link_to 'Get Started', new_quiz_path, class: "mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
       </div>
       
       <div class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-blue-500">Track Your Progress</h2>
         <p class="mt-2 text-gray-600">Monitor your quiz performance and track your progress over time with our intuitive dashboard.</p>
-        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View Progress</a>
+        <%= link_to 'View Progress', quizzes_path, class: "mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
       </div>
       
       <div class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-blue-500">Leaderboard</h2>
         <p class="mt-2 text-gray-600">Compete with others and climb the ranks on our leaderboard. See how you stack up!</p>
-        <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Check Leaderboard</a>
       </div>
     </section>
   </div>
 </body>
 </html>
-
