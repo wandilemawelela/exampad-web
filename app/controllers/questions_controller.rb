@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :set_quiz
+  before_action :require_teacher!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
@@ -7,18 +9,18 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question
   end
 
   def new
-    @quiz = Quiz.find(params[:quiz_id])
-    @question = @quiz.questions.build
+    @question = @quiz.questions.new(question_type: 'multiple_choice')
+    @answers = @question.answers.build([{ content: '', correct: false }] * 4) # Start with 4 possible answers
   end
 
   def create
-    @quiz = Quiz.find(params[:quiz_id])
-    @question = @quiz.questions.build(question_params)
+    @question = @quiz.questions.new(question_params)
     if @question.save
-      redirect_to quiz_questions_path(@quiz), notice: 'Question was successfully created.'
+      redirect_to @quiz, notice: 'Question created successfully.'
     else
       render :new
     end
@@ -45,12 +47,16 @@ class QuestionsController < ApplicationController
 
   private
 
+  def set_quiz
+    @quiz = Quiz.find(params[:quiz_id])
+  end
+
   def set_question
-    @question = Question.find(params[:id])
+    @question = @quiz.questions.find(params[:id])
   end
 
   def question_params
-    params.require(:question).permit(:content)
+    params.require(:question).permit(:content, :question_type, answers_attributes: [:id, :content, :correct, :_destroy])
   end
 end
 
