@@ -12,13 +12,15 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
+    @quizzes = Quiz.all
   end
 
   def create
     @quiz = Quiz.new(quiz_params)
     if @quiz.save
-      redirect_to @quiz, notice: 'Quiz was successfully created.'
+      redirect_to @quiz, notice: 'Quiz created successfully.'
     else
+      @quizzes = Quiz.all  # Ensure quiz list is available on error
       render :new
     end
   end
