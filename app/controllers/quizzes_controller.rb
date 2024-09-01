@@ -8,6 +8,7 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    @questions = @quiz.questions
   end
 
   def new

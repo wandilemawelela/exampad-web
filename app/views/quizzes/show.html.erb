@@ -1,6 +1,24 @@
-<h1 class="text-2xl font-bold mb-4"><%= @quiz.title %></h1>
-<p><%= @quiz.description %></p>
+<h1><%= @quiz.title %></h1>
 
-<%= link_to 'Edit', edit_quiz_path(@quiz), class: 'bg-blue-500 text-white px-4 py-2 rounded' %>
-<%= link_to 'Back', quizzes_path, class: 'bg-gray-500 text-white px-4 py-2 rounded' %>
-
+<h2>Questions</h2>
+<% if @questions.any? %>
+  <ul>
+    <% @questions.each do |question| %>
+      <li>
+        <strong><%= question.content %></strong>
+        <% if question.answers.any? %>
+          <ul>
+            <% question.answers.each do |answer| %>
+              <li><%= answer.content %> <% if answer.correct %>(Correct)<% end %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= link_to 'Show', quiz_question_path(@quiz, question) %> |
+        <%= link_to 'Edit', edit_quiz_question_path(@quiz, question) %> |
+        <%= link_to 'Delete', quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No questions available for this quiz.</p>
+<% end %>
