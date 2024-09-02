@@ -1,18 +1,27 @@
-<h1>Quizzes</h1>
+<!-- app/views/quizzes/index.html.erb -->
+
+<h1 style="font-size: 2em; margin-bottom: 1em;">Quizzes</h1>
 
 <% if current_user.teacher? %>
-  <%= link_to 'Create New Quiz', new_quiz_path %>
+  <%= link_to new_quiz_path, style: 'background-color: #4CAF50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; display: inline-block; margin-bottom: 1em;' do %>
+    <i class="fas fa-plus-circle"></i> Create New Quiz
+  <% end %>
 <% end %>
 
-<ul>
+<ul style="list-style: none; padding: 0;">
   <% @quizzes.each do |quiz| %>
-    <li>
-      <%= link_to quiz.title, quiz_path(quiz) %>
+    <li style="margin-bottom: 1em;">
+      <%= link_to quiz.title, quiz_path(quiz), style: 'color: #1E90FF; text-decoration: none; font-weight: bold;' %>
       <% if current_user.teacher? %>
-        <%= link_to 'Edit', edit_quiz_path(quiz) %> |
-        <%= link_to 'Delete', quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% elsif current_user.student? %>
-
+        <span style="margin-left: 1em;">
+          <%= link_to edit_quiz_path(quiz), style: 'color: #FFA500; text-decoration: none;' do %>
+            <i class="fas fa-edit"></i> Edit
+          <% end %>
+          |
+          <%= link_to quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' }, style: 'color: #FF4500; text-decoration: none;' do %>
+            <i class="fas fa-trash-alt"></i> Delete
+          <% end %>
+        </span>
       <% end %>
     </li>
   <% end %>
