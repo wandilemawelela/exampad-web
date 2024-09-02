@@ -1,10 +1,12 @@
-<h1 class="text-2xl font-bold mb-4"><%= action_name.capitalize %> Quiz</h1>
+<!-- app/views/quizzes/edit.html.erb -->
+
+<h1 style="font-size: 2em; font-weight: bold; margin-bottom: 1em;"><%= action_name.capitalize %> Quiz</h1>
 
 <%= form_with(model: @quiz, local: true) do |form| %>
   <% if @quiz.errors.any? %>
-    <div id="error_explanation">
-      <h2 class="text-red-500"><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
-      <ul>
+    <div id="error_explanation" style="margin-bottom: 1em; padding: 1em; border: 1px solid #f5c6cb; background-color: #f8d7da; color: #721c24;">
+      <h2 style="color: #721c24; font-weight: bold;"><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+      <ul style="list-style-type: none; padding-left: 0;">
         <% @quiz.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -12,20 +14,19 @@
     </div>
   <% end %>
 
-  <div class="mb-4">
-    <%= form.label :title, class: "block text-gray-700" %>
-    <%= form.text_field :title, class: "form-input mt-1 block w-full" %>
+  <div style="margin-bottom: 1em;">
+    <%= form.label :title, class: "block text-gray-700", style: "font-weight: bold; margin-bottom: 0.5em;" %>
+    <%= form.text_field :title, class: "form-input mt-1 block w-full", style: "padding: 0.5em; border: 1px solid #ccc; border-radius: 4px;" %>
   </div>
 
-  <div class="mb-4">
-    <%= form.label :description, class: "block text-gray-700" %>
-    <%= form.text_area :description, class: "form-input mt-1 block w-full" %>
+  <div style="margin-bottom: 1em;">
+    <%= form.label :description, class: "block text-gray-700", style: "font-weight: bold; margin-bottom: 0.5em;" %>
+    <%= form.text_area :description, class: "form-input mt-1 block w-full", style: "padding: 0.5em; border: 1px solid #ccc; border-radius: 4px;" %>
   </div>
 
-  <div class="mb-4">
-    <%= form.submit class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+  <div style="margin-bottom: 1em;">
+    <%= form.submit 'Save Changes', style: 'background-color: #007bff; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; cursor: pointer;' %>
   </div>
 <% end %>
 
-<%= link_to 'Back', quizzes_path, class: 'bg-gray-500 text-white px-4 py-2 rounded' %>
-
+<%= link_to 'Back', quizzes_path, style: 'background-color: #6c757d; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none;' %>
