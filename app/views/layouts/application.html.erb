@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Exampad - Learn, Play, Succeed with personalized quizzes and gamified learning!</title>
-  <%= stylesheet_link_tag 'application.tailwind', media: 'all' %>
+  <title>Exampad</title>
   <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="bg-gray-100">
-  <div class="container mx-auto p-6">
-    <header class="flex justify-between items-center mb-8">
-      <h1 class="text-4xl font-bold text-blue-600">Exampad</h1>
-
-      <div class="flex items-center">
+<body>
+  <header>
+    <nav>
+      <ul>
         <% if user_signed_in? %>
-          <span class="mr-4 text-gray-700">
-            Logged in as: <strong><%= current_user.role.capitalize %></strong>
-          </span>
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" %>
+          <% if current_user.teacher? %>
+            <li><%= link_to 'Create Quiz', new_quiz_path %></li>
+            <li><%= link_to 'My Quizzes', quizzes_path %></li>
+          <% elsif current_user.student? %>
+            <li><%= link_to 'Available Quizzes', quizzes_path %></li>
+          <% elsif current_user.admin? %>
+            <li><%= link_to 'Admin Dashboard', admin_dashboard_path %></li>
+          <% end %>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <%= link_to 'Sign In', new_user_session_path, class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" %>
+          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
         <% end %>
-      </div>
-    </header>
+      </ul>
+    </nav>
+  </header>
 
-    <%= yield %>
-  </div>
-
-<footer class="bg-gray-800 text-white text-center p-4 mt-6">
-  <p>&copy; 2024 Exampad. All rights reserved.</p>
-</footer>
+  <%= yield %>
 </body>
 </html>

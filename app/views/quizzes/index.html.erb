@@ -1,25 +1,19 @@
-<h1 class="text-2xl font-bold mb-4">Quizzes</h1>
-<% if current_user.role == 'teacher' %>
-  <%= link_to 'New Quiz', new_quiz_path, class: 'bg-blue-500 text-white px-4 py-2 rounded' %>
-<% end %>
-<table class="min-w-full bg-white border border-gray-300">
-  <thead>
-    <tr>
-      <th class="border-b p-2">Title</th>
-      <th class="border-b p-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @quizzes.each do |quiz| %>
-      <tr>
-        <td class="border-b p-2"><%= quiz.title %></td>
-        <td class="border-b p-2">
-          <%= link_to 'Show', quiz_path(quiz), class: 'text-blue-500' %> |
-          <%= link_to 'Edit', edit_quiz_path(quiz), class: 'text-blue-500' %> |
-          <%= link_to 'Destroy', quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Quizzes</h1>
 
+<% if current_user.teacher? %>
+  <%= link_to 'Create New Quiz', new_quiz_path %>
+<% end %>
+
+<ul>
+  <% @quizzes.each do |quiz| %>
+    <li>
+      <%= link_to quiz.title, quiz_path(quiz) %>
+      <% if current_user.teacher? %>
+        <%= link_to 'Edit', edit_quiz_path(quiz) %> |
+        <%= link_to 'Delete', quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% elsif current_user.student? %>
+
+      <% end %>
+    </li>
+  <% end %>
+</ul>

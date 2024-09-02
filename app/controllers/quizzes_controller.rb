@@ -4,11 +4,22 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[show edit update destroy]
 
   def index
-    @quizzes = Quiz.all
+    if current_user.teacher?
+      @quizzes = Quiz.all
+    elsif current_user.student?
+      # Here we need to isplay only quizzes the student has access to.
+      # For now, assume, we students see all quizzes.
+      @quizzes = Quiz.all
+    else
+      @quizzes = Quiz.none
+    end
   end
 
   def show
     @questions = @quiz.questions
+    if current_user.student?
+      # @student_quizzes = current_user.student_answers.where(question: @questions)
+    end
   end
 
   def new

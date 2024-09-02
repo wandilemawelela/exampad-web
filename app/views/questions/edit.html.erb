@@ -1,25 +1,27 @@
-<!-- app/views/questions/_form.html.erb -->
-<%= form_with(model: [@quiz, @question], local: true) do |form| %>
-  <div>
-    <%= form.label :content, "Question" %>
-    <%= form.text_field :content, class: "input" %>
-  </div>
+<h1>Edit Question</h1>
 
-  <div>
-    <%= form.label :question_type %>
-    <%= form.select :question_type, options_for_select([['Multiple Choice', 'multiple_choice']], 'multiple_choice'), disabled: true %>
+<%= form_with(model: [@quiz, @question], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :content, 'Question Content' %>
+    <%= form.text_area :content, rows: 3, class: 'form-control' %>
   </div>
 
   <h3>Answers</h3>
   <%= form.fields_for :answers do |answer_form| %>
-    <div>
-      <%= answer_form.label :content %>
-      <%= answer_form.text_field :content, class: "input" %>
-
-      <%= answer_form.label :correct, "Correct" %>
-      <%= answer_form.check_box :correct %>
+    <div class="field">
+      <%= answer_form.label :content, 'Answer Content' %>
+      <%= answer_form.text_field :content, class: 'form-control' %>
     </div>
+    <div class="field">
+      <%= answer_form.check_box :correct %>
+      <%= answer_form.label :correct, 'Correct Answer?' %>
+    </div>
+    <hr>
   <% end %>
 
-  <%= form.submit class: "btn btn-primary" %>
+  <div class="actions">
+    <%= form.submit 'Update Question', class: 'btn btn-primary' %>
+  </div>
 <% end %>
+
+<%= link_to 'Back to Quiz', quiz_path(@quiz), class: 'btn btn-secondary' %>

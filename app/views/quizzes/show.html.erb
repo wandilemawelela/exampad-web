@@ -1,24 +1,19 @@
 <h1><%= @quiz.title %></h1>
 
-<h2>Questions</h2>
-<% if @questions.any? %>
+<p><%= @quiz.description %></p>
+
+<% if current_user.teacher? %>
+  <%= link_to 'Edit Quiz', edit_quiz_path(@quiz) %> |
+  <%= link_to 'Delete Quiz', quiz_path(@quiz), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% elsif current_user.student? %>
+  <h2>Questions</h2>
   <ul>
-    <% @questions.each do |question| %>
+    <% @quiz.questions.each do |question| %>
       <li>
-        <strong><%= question.content %></strong>
-        <% if question.answers.any? %>
-          <ul>
-            <% question.answers.each do |answer| %>
-              <li><%= answer.content %> <% if answer.correct %>(Correct)<% end %></li>
-            <% end %>
-          </ul>
-        <% end %>
-        <%= link_to 'Show', quiz_question_path(@quiz, question) %> |
-        <%= link_to 'Edit', edit_quiz_question_path(@quiz, question) %> |
-        <%= link_to 'Delete', quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <p><%= question.content %></p>
+        <!-- Display options and answer form -->
+        <%= render partial: 'questions/answer_form', locals: { question: question } %>
       </li>
     <% end %>
   </ul>
-<% else %>
-  <p>No questions available for this quiz.</p>
 <% end %>

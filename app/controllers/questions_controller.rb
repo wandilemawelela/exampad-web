@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to quiz_question_path(@question.quiz, @question), notice: 'Question was successfully updated.'
+      redirect_to quiz_path(@quiz), notice: 'Question was successfully updated.'
     else
       render :edit
     end
