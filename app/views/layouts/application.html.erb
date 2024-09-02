@@ -4,32 +4,88 @@
   <title>Exampad</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <style>
+    .btn {
+      background-color: #4A90E2; /* Button color */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
 
-  <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
+    .btn:hover {
+      background-color: #357ABD; /* Darker shade for hover */
+    }
+
+    .btn-icon {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    .nav-icon {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 
-<body>
-  <header>
-    <nav>
-      <ul>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333;">
+  <header style="background-color: #4A90E2; padding: 10px 20px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
         <% if user_signed_in? %>
           <% if current_user.teacher? %>
-            <li><%= link_to 'Create Quiz', new_quiz_path %></li>
-            <li><%= link_to 'My Quizzes', quizzes_path %></li>
+            <li style="margin-right: 15px;">
+              <%= link_to new_quiz_path, class: 'btn' do %>
+                <i class="nav-icon fa fa-plus"></i> Create Quiz
+              <% end %>
+            </li>
+            <li style="margin-right: 15px;">
+              <%= link_to quizzes_path, class: 'btn' do %>
+                <i class="nav-icon fa fa-list"></i> My Quizzes
+              <% end %>
+            </li>
           <% elsif current_user.student? %>
-            <li><%= link_to 'Available Quizzes', quizzes_path %></li>
+            <li style="margin-right: 15px;">
+              <%= link_to quizzes_path, class: 'btn' do %>
+                <i class="nav-icon fa fa-book"></i> Available Quizzes
+              <% end %>
+            </li>
           <% elsif current_user.admin? %>
-            <li><%= link_to 'Admin Dashboard', admin_dashboard_path %></li>
+            <li style="margin-right: 15px;">
+              <%= link_to admin_dashboard_path, class: 'btn' do %>
+                <i class="nav-icon fa fa-cog"></i> Admin Dashboard
+              <% end %>
+            </li>
           <% end %>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'btn' do %>
+              <i class="nav-icon fa fa-sign-out-alt"></i> Sign Out
+            <% end %>
+          </li>
         <% else %>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li style="margin-right: 15px;">
+            <%= link_to new_user_session_path, class: 'btn' do %>
+              <i class="nav-icon fa fa-sign-in-alt"></i> Sign In
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path, class: 'btn' do %>
+              <i class="nav-icon fa fa-user-plus"></i> Sign Up
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </nav>
   </header>
 
-  <%= yield %>
+  <main style="padding: 20px;">
+    <%= yield %>
+  </main>
 </body>
 </html>

@@ -1,26 +1,113 @@
 <!-- app/views/quizzes/new.html.erb -->
 
-<h1>Create a New Quiz</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Quiz - Exampad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
 
-<%= form_with(model: @quiz, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    h1, h2 {
+      color: #4A90E2;
+    }
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    .field {
+      margin-bottom: 15px;
+    }
 
-  <div class="actions">
-    <%= form.submit 'Create Quiz' %>
-  </div>
-<% end %>
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-<h2>Available Quizzes</h2>
-<ul>
-  <% @quizzes.each do |quiz| %>
-    <li><%= link_to quiz.title, quiz_path(quiz) %></li>
+    .field input[type="text"],
+    .field textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .btn {
+      background-color: #4A90E2; /* Button color */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #357ABD; /* Darker shade for hover */
+    }
+
+    .btn-icon {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    ul li a {
+      color: #4A90E2;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create a New Quiz</h1>
+
+  <%= form_with(model: @quiz, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Create Quiz', class: 'btn' %>
+    </div>
   <% end %>
-</ul>
+
+  <h2>Available Quizzes</h2>
+  <ul>
+    <% @quizzes.each do |quiz| %>
+      <li><%= link_to quiz.title, quiz_path(quiz) %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
