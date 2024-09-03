@@ -1,17 +1,25 @@
-<h1><%= @quiz.title %></h1>
-<p><%= @quiz.description %></p>
+<h1 style="font-size: 2em; margin-bottom: 1em;">Quizzes</h1>
 
 <% if current_user.teacher? %>
-  <%= link_to new_quiz_question_path(@quiz), class: 'btn btn-primary', style: 'background-color: #4CAF50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; display: inline-block; margin-bottom: 1em;' do %>
-    <i class="fas fa-plus-circle"></i> Add New Question
+  <%= link_to new_quiz_question_path(@quiz), class: 'btn btn-primary', style: 'background-color: #4CAF50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none;' do %>
+    <i class="fas fa-plus-circle"></i> Add Question
   <% end %>
 <% end %>
 
-<h2>Questions</h2>
 <ul>
   <% @quiz.questions.each do |question| %>
-    <li>
-      <%= question.content %>
+    <li style="margin-bottom: 1em;">
+      <p><%= question.content %></p>
+      
+      <% if current_user.teacher? %>
+        <%= link_to edit_quiz_question_path(@quiz, question), class: 'btn btn-warning', style: 'margin-right: 0.5em;' do %>
+          <i class="fas fa-edit"></i> Edit
+        <% end %>
+
+        <%= link_to quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+          <i class="fas fa-trash"></i> Delete
+        <% end %>
+      <% end %>
     </li>
   <% end %>
 </ul>
@@ -19,4 +27,3 @@
 <%= link_to quizzes_path, class: 'btn btn-secondary', style: 'background-color: #6c757d; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none;' do %>
   <i class="fas fa-arrow-left"></i> Back to Quizzes
 <% end %>
-
