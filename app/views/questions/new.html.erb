@@ -1,25 +1,26 @@
-<!-- app/views/questions/_form.html.erb -->
 <%= form_with(model: [@quiz, @question], local: true) do |form| %>
-  <div>
-    <%= form.label :content, "Question" %>
-    <%= form.text_field :content, class: "input" %>
+  <div style="margin-bottom: 1em;">
+    <%= form.label :content, "Question", style: 'display: block; font-weight: bold; margin-bottom: 0.5em;' %>
+    <%= form.text_field :content, class: "input", style: 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px;' %>
   </div>
 
-  <div>
-    <%= form.label :question_type %>
-    <%= form.select :question_type, options_for_select([['Multiple Choice', 'multiple_choice']], 'multiple_choice'), disabled: true %>
+  <div style="margin-bottom: 1em;">
+    <%= form.label :question_type, style: 'display: block; font-weight: bold; margin-bottom: 0.5em;' %>
+    <%= form.select :question_type, options_for_select([['Multiple Choice', 'multiple_choice']], 'multiple_choice'), disabled: true, style: 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px;' %>
   </div>
 
-  <h3>Answers</h3>
+  <h3 style="font-size: 1.5em; margin-bottom: 1em;">Answers</h3>
   <%= form.fields_for :answers do |answer_form| %>
-    <div>
-      <%= answer_form.label :content %>
-      <%= answer_form.text_field :content, class: "input" %>
+    <div style="margin-bottom: 1em;">
+      <%= answer_form.label :content, style: 'display: block; font-weight: bold; margin-bottom: 0.5em;' %>
+      <%= answer_form.text_field :content, class: "input", style: 'width: calc(100% - 70px); padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; display: inline-block;' %>
 
-      <%= answer_form.label :correct, "Correct" %>
-      <%= answer_form.check_box :correct %>
+      <%= answer_form.label :correct, "Correct", style: 'font-weight: bold; margin-left: 10px;' %>
+      <%= answer_form.check_box :correct, style: 'margin-left: 5px;' %>
     </div>
   <% end %>
 
-  <%= form.submit class: "btn btn-primary" %>
+  <div class="actions">
+    <%= form.submit 'Save Question', style: 'background-color: #007bff; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none; cursor: pointer;' %>
+  </div>
 <% end %>
