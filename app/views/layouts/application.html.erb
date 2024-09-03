@@ -31,13 +31,37 @@
       margin-right: 10px;
       font-size: 18px;
     }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #4A90E2;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333;">
   <header style="background-color: #4A90E2; padding: 10px 20px;">
     <nav style="display: flex; justify-content: space-between; align-items: center;">
-      <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center;">
+        <li style="margin-right: 15px;">
+          <%= link_to root_path, class: 'btn' do %>
+            <i class="nav-icon fa fa-home"></i> Home
+          <% end %>
+        </li>
         <% if user_signed_in? %>
           <% if current_user.teacher? %>
             <li style="margin-right: 15px;">
@@ -87,5 +111,10 @@
   <main style="padding: 20px;">
     <%= yield %>
   </main>
+
+  <footer>
+    <p>&copy; <%= Date.today.year %> Exampad. All rights reserved.</p>
+    <p>Powered by <%= link_to 'Rails', 'https://rubyonrails.org', target: '_blank' %></p>
+  </footer>
 </body>
 </html>
