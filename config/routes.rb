@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :quizzes do
     resources :questions do
+      post 'answer', on: :member
       resources :answers, only: %i[new create edit update destroy]
     end
   end

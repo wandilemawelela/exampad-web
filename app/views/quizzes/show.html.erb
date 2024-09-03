@@ -1,19 +1,22 @@
 <h1><%= @quiz.title %></h1>
-
 <p><%= @quiz.description %></p>
 
 <% if current_user.teacher? %>
-  <%= link_to 'Edit Quiz', edit_quiz_path(@quiz) %> |
-  <%= link_to 'Delete Quiz', quiz_path(@quiz), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% elsif current_user.student? %>
-  <h2>Questions</h2>
-  <ul>
-    <% @quiz.questions.each do |question| %>
-      <li>
-        <p><%= question.content %></p>
-        <!-- Display options and answer form -->
-        <%= render partial: 'questions/answer_form', locals: { question: question } %>
-      </li>
-    <% end %>
-  </ul>
+  <%= link_to new_quiz_question_path(@quiz), class: 'btn btn-primary', style: 'background-color: #4CAF50; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; display: inline-block; margin-bottom: 1em;' do %>
+    <i class="fas fa-plus-circle"></i> Add New Question
+  <% end %>
 <% end %>
+
+<h2>Questions</h2>
+<ul>
+  <% @quiz.questions.each do |question| %>
+    <li>
+      <%= question.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to quizzes_path, class: 'btn btn-secondary', style: 'background-color: #6c757d; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none;' do %>
+  <i class="fas fa-arrow-left"></i> Back to Quizzes
+<% end %>
+

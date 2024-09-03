@@ -1,0 +1,14 @@
+<!-- app/views/questions/_answer_form.html.erb -->
+
+<%= form_with(url: answer_question_path(question), local: true) do |form| %>
+  <% question.answers.each do |answer| %>
+    <div style="margin-bottom: 1em;">
+      <%= form.radio_button :answer_id, answer.id %>
+      <%= form.label :answer_id, answer.content, style: 'margin-left: 0.5em;' %>
+    </div>
+  <% end %>
+  <div>
+    <%= form.submit 'Submit Answer', style: 'background-color: #007bff; color: white; padding: 0.5em 1em; border: none; border-radius: 4px; text-decoration: none; cursor: pointer;' %>
+  </div>
+<% end %>
+

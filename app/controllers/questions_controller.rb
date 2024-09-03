@@ -58,5 +58,18 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:content, :question_type, answers_attributes: [:id, :content, :correct, :_destroy])
   end
+
+  def answer
+    @question = Question.find(params[:id])
+    selected_answer = @question.answers.find(params[:answer_id])
+
+    if selected_answer.correct?
+      flash[:notice] = "Correct answer!"
+    else
+      flash[:alert] = "Incorrect answer. Try again."
+    end
+
+    redirect_to quiz_path(@question.quiz)
+  end
 end
 
