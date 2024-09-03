@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   def edit
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.find(params[:id])
-    redirect_to quiz_question_path(@question.quiz, @question), notice: 'Question was edited successfully.'
+    render :edit
   end
 
   def update
