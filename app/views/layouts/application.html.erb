@@ -80,6 +80,11 @@
                 <i class="nav-icon fa fa-book"></i> Available Quizzes
               <% end %>
             </li>
+            <li style="margin-right: 15px;">
+              <span style="color: white; font-size: 16px;">
+                Points: <%= current_user.points || 0 %>
+              </span>
+            </li>
           <% elsif current_user.admin? %>
             <li style="margin-right: 15px;">
               <%= link_to admin_dashboard_path, class: 'btn' do %>

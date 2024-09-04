@@ -1,15 +1,14 @@
 class QuestionsController < ApplicationController
   before_action :set_quiz
   before_action :require_teacher!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[show edit update destroy answer]
 
   def index
-    @quiz = Quiz.find(params[:quiz_id])
     @questions = @quiz.questions
   end
 
   def show
-    @question
+    # The @question is already set by the set_question callback
   end
 
   def new
@@ -27,8 +26,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @quiz = Quiz.find(params[:quiz_id])
-    @question = @quiz.questions.find(params[:id])
     render :edit
   end
 
@@ -42,7 +39,27 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to quiz_questions_path(@question.quiz), notice: 'Question was successfully destroyed.'
+    redirect_to quiz_path(@quiz), notice: 'Question was successfully deleted.'
+  end
+
+  def answer
+    selected_answer = @question.answers.find(params[:answer_id])
+
+    if selected_answer.correct?
+      flash[:notice] = "Correct answer!"
+      current_user.increment!(:points, 2) if @question.last_question? # Assuming a method to check if it's the last question
+    else
+      flash[:alert] = "Incorrect answer. Try again."
+    end
+
+    # Optionally, redirect to the next question or show results
+    # If you want to redirect to the next question:
+    next_question = @quiz.questions.where('id > ?', @question.id).first
+    if next_question
+      redirect_to quiz_question_path(@quiz, next_question)
+    else
+      redirect_to quiz_path(@quiz), notice: 'You have completed the quiz!'
+    end
   end
 
   private
@@ -58,18 +75,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:content, :question_type, answers_attributes: [:id, :content, :correct, :_destroy])
   end
-
-  def answer
-    @question = Question.find(params[:id])
-    selected_answer = @question.answers.find(params[:answer_id])
-
-    if selected_answer.correct?
-      flash[:notice] = "Correct answer!"
-    else
-      flash[:alert] = "Incorrect answer. Try again."
-    end
-
-    redirect_to quiz_path(@question.quiz)
-  end
 end
-

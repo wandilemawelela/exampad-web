@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_teacher!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_quiz, only: %i[show edit update destroy]
+  before_action :set_quiz, only: %i[show start edit update destroy]
 
   def index
     if current_user.teacher?
@@ -51,6 +51,16 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.'
+  end
+
+  def start
+    first_question = @quiz.questions.first
+    if first_question
+      redirect_to quiz_question_path(@quiz, first_question)
+    else
+      flash[:alert] = "This quiz has no questions."
+      redirect_to quizzes_path
+    end
   end
 
   private

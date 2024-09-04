@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :quizzes do
+    member do
+      get 'start'
+    end
     resources :questions do
       post 'answer', on: :member
       resources :answers, only: %i[new create edit update destroy]

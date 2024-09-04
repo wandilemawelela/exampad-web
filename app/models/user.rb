@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_save :initialize_points
+
+  private
+
+  def initialize_points
+    self.points ||= 0
+  end
 end
