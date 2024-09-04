@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'leaderboard/index'
   get 'home/index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
       resources :answers, only: %i[new create edit update destroy]
     end
   end
+
+  get 'leaderboard', to: 'leaderboard#index'
 
   root 'home#index'
 end

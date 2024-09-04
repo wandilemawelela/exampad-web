@@ -80,11 +80,6 @@
                 <i class="nav-icon fa fa-book"></i> Available Quizzes
               <% end %>
             </li>
-            <li style="margin-right: 15px;">
-              <span style="color: white; font-size: 16px;">
-                Points: <%= current_user.points || 0 %>
-              </span>
-            </li>
           <% elsif current_user.admin? %>
             <li style="margin-right: 15px;">
               <%= link_to admin_dashboard_path, class: 'btn' do %>
@@ -92,6 +87,11 @@
               <% end %>
             </li>
           <% end %>
+          <li style="margin-right: 15px;">
+            <%= link_to leaderboard_path, class: 'btn' do %>
+              <i class="nav-icon fa fa-trophy"></i> Leaderboard
+            <% end %>
+          </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete, class: 'btn' do %>
               <i class="nav-icon fa fa-sign-out-alt"></i> Sign Out
@@ -110,6 +110,11 @@
           </li>
         <% end %>
       </ul>
+      <% if user_signed_in? && current_user.student? %>
+        <div style="color: white; font-size: 14px;">
+          Points: <%= current_user.points %>
+        </div>
+      <% end %>
     </nav>
   </header>
 
