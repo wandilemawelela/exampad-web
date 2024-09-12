@@ -4,75 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exampad - Interactive Learning and Quizzes</title>
+    <title>Exampad</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <h1>Exampad</h1>
-            <nav>
-                <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <div class="logo">Exampad</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="hero">
-        <div class="container">
-            <h2>Engage. Learn. Achieve.</h2>
-            <p>Experience interactive learning with Exampad. Quizzes, gamification, and leaderboards to boost your
-                knowledge.</p>
-            <a href="#signup" class="btn">Get Started</a>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Exampad</h1>
+            <p>Your ultimate quiz platform for learning and growth</p>
+            <a href="http://146.190.214.18/" class="btn">Get Started</a>
         </div>
     </section>
 
-    <section id="features" class="container">
-        <h2>Features</h2>
-        <div class="feature-box">
-            <h3>Interactive Quizzes</h3>
-            <p>Challenge yourself with quizzes designed to enhance your learning experience.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Gamified Learning</h3>
-            <p>Earn points and climb the leaderboard with every quiz you complete.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Teacher-Designed Content</h3>
-            <p>Quizzes created by experienced teachers to ensure quality and relevance.</p>
-        </div>
-    </section>
-
-    <section id="about" class="container">
+    <section id="about" class="about">
         <h2>About Exampad</h2>
-        <p>Exampad was inspired by the need for a dynamic and engaging educational platform. Our mission is to provide
-            students with tools that make learning fun and effective.</p>
+        <p>Exampad was inspired by the need for a dynamic and engaging quiz platform. With a focus on gamification and
+            leaderboards, it aims to make learning fun and competitive.</p>
     </section>
 
-    <section id="contact" class="container">
+    <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3>Customizable Quizzes</h3>
+                <p>Create quizzes based on grade and subject to suit every learner's needs.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Gamified Experience</h3>
+                <p>Earn points and climb the leaderboards to stay motivated.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Teacher Accounts</h3>
+                <p>Teachers can create and manage quizzes effortlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <button type="submit" class="btn">Send</button>
-        </form>
+        <p>If you have any questions or feedback, feel free to reach out to us.</p>
+        <a href="mailto:support@exampad.com" class="btn">Email Us</a>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Exampad. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 Exampad. All rights reserved.</p>
     </footer>
 
     <script src="scripts.js"></script>
