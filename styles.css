@@ -49,7 +49,7 @@ header {
   color: var(--secondary-color);
 }
 
-.hero {
+.intro {
   text-align: center;
   padding: 100px 20px;
   background: url("https://via.placeholder.com/1500x800") no-repeat center
@@ -61,18 +61,18 @@ header {
   height: 100vh;
 }
 
-.hero-content {
+.intro-content {
   max-width: 600px;
   animation: fadeIn 2s ease-in-out;
 }
 
-.hero h1 {
+.intro h1 {
   font-size: 3em;
   margin: 0;
   font-weight: bold;
 }
 
-.hero p {
+.intro p {
   font-size: 1.2em;
   margin: 20px 0;
 }
@@ -90,9 +90,8 @@ header {
   background-color: var(--secondary-color);
 }
 
-.about,
 .features,
-.contact {
+.about {
   padding: 50px 20px;
   text-align: center;
 }
@@ -115,8 +114,23 @@ header {
   transition: transform 0.3s;
 }
 
+.features .feature-item img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
 .features .feature-item:hover {
   transform: translateY(-10px);
+}
+
+.about ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about ul li {
+  display: inline;
+  margin: 0 10px;
 }
 
 footer {
