@@ -56,18 +56,4 @@ git push origin feature/AmazingFeature
 # Licensing
 Distributed under the MIT License. See LICENSE for more information.
 
-# Corrective and Preventative Measures
-#### Improvements
-
-1. Enhanced Load Balancer Configuration Reviews: Implement a more rigorous review process for load balancer configurations to prevent similar issues in the future.
-2. Improved Monitoring and Alerting: Expand monitoring to include load balancer traffic distribution metrics, allowing for earlier detection of misconfigurations.
-3. Incident Response Training: Conduct training sessions for the engineering team to improve response times and accuracy in identifying root causes during incidents.
-
-#### Tasks
-1. Audit Load Balancer Configuration: Perform a full audit of the current load balancer configurations across all environments.
-2. Implement Monitoring for Load Balancer Metrics: Set up monitoring and alerts for load balancer traffic distribution and CPU utilization across servers.
-3. Run a Load Balancer Configuration Validation Script: Develop and deploy a script to validate load balancer configurations before deployment.
-4. Conduct Post-Incident Training: Schedule training for all engineers on the incident and lessons learned, emphasizing the importance of thorough investigation and cross-team collaboration.
-
-This postmortem outlines the key events, root causes, and corrective actions related to the service outage on August 12, 2024. The steps outlined in the corrective and preventative measures section will be implemented to reduce the likelihood of similar incidents occurring in the future.
 
